@@ -39,8 +39,9 @@ function createUsersList() {
       table.appendChild(tableRow);
       btn.addEventListener('click', () => removeUser(tableRow, id));
     }
+    form.reset();
   }
-  form.reset();
+
   function removeUser(row, id) {
     const index = list.findIndex((item) => item.id === id);
 

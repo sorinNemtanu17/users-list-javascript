@@ -1,7 +1,7 @@
 'use strict';
 
 function createUsersList() {
-  const form = document.querySelector('.form-control');
+  const form = document.querySelector('.form');
   const table = document.querySelector('.users-list tbody');
 
   form.addEventListener('submit', handleAddUser);
@@ -11,12 +11,12 @@ function createUsersList() {
   function handleAddUser(e) {
     e.preventDefault();
 
-    const firstName = form.elements.firstname.value;
-    const lastName = form.elements.lastname.value;
-    const id = list.length + 1;
+    let firstName = form.elements.firstname.value;
+    let lastName = form.elements.lastname.value;
+    let id = list.length + 1;
 
     if (firstName && lastName) {
-      list.push({ firstName, lastName, id });
+      list.push({ id, firstName, lastName });
       const tableRow = document.createElement('tr');
       const tableCellId = document.createElement('td');
       const tableCellFirstname = document.createElement('td');
@@ -40,11 +40,10 @@ function createUsersList() {
       btn.addEventListener('click', () => removeUser(tableRow, id));
     }
     form.reset();
+    form.elements.firstname.focus();
   }
-
   function removeUser(row, id) {
     const index = list.findIndex((item) => item.id === id);
-
     list.splice(index, 1);
 
     console.log(list);
@@ -52,5 +51,4 @@ function createUsersList() {
     return list;
   }
 }
-
 createUsersList();
